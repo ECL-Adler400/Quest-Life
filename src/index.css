@@ -1,0 +1,502 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Deep Purple Crystal Theme - Light Mode */
+  --bg-primary: #1F1133; /* Deep Void */
+  --bg-secondary: #2E1A47; /* Midnight Purple */
+  --bg-tertiary: #4A2F6D; /* Royal Purple */
+  --text-primary: #FFFFFF; /* Pure White */
+  --text-secondary: #E0D8F0; /* Ghostly Lavender */
+  --text-muted: #B8A9D9; /* Muted Lavender */
+  --border: #4A2F6D; /* Royal Purple */
+  --border-accent: #A060FF; /* Magic Amethyst */
+  
+  /* Primary Accent Colors */
+  --accent: #A060FF; /* Magic Amethyst */
+  --accent-hover: #D4BFFF; /* Luminous Orchid */
+  --accent-text: #FFFFFF;
+  
+  /* Crystal Magic Effects */
+  --crystal-glow: rgba(160, 96, 255, 0.3);
+  --crystal-shimmer: rgba(212, 191, 255, 0.2);
+  --magical-particle: #D4BFFF;
+  
+  /* Gamification Status Colors */
+  --hp-color: #EF4444; /* Damage Red */
+  --hp-bg: rgba(239, 68, 68, 0.1);
+  --mana-color: #3B82F6; /* Mystic Blue */
+  --mana-bg: rgba(59, 130, 246, 0.1);
+  --xp-color: #FBBF24; /* Gold Coin */
+  --xp-bg: rgba(251, 191, 36, 0.1);
+  --gold-color: #FBBF24; /* Gold Coin */
+  --gems-color: #A060FF; /* Magic Amethyst */
+  
+  /* Legacy Colors (maintaining compatibility) */
+  --stamina-color: #4ADE80;
+  --wellness-color: #A78BFA;
+  --success-color: #28a745; /* Healing Green */
+  --warning-color: #ffc107; /* Gold Coin Warning */
+  --error-color: #dc3545; /* Damage Red */
+  
+  /* Class Colors */
+  --warrior-color: #EF4444; /* Strong Red */
+  --mage-color: #3B82F6; /* Mystic Blue */
+  --healer-color: #22C55E; /* Healing Green */
+  --rogue-color: #A855F7; /* Shadow Purple */
+  
+  /* Equipment Rarity Colors */
+  --common-color: #9CA3AF;
+  --rare-color: #3B82F6;
+  --epic-color: #A855F7;
+  --legendary-color: #F59E0B;
+  
+  /* Toast Colors */
+  --toast-bg: #2E1A47;
+  --toast-color: #FFFFFF;
+  --toast-border: #4A2F6D;
+}
+
+[data-theme="dark"] {
+  /* Enhanced Dark Crystal Theme */
+  --bg-primary: #0D0A1A; /* Even deeper void */
+  --bg-secondary: #1A0F2E; /* Darker midnight */
+  --bg-tertiary: #2A1B4A; /* Darker royal purple */
+  --text-primary: #FFFFFF;
+  --text-secondary: #E0D8F0;
+  --text-muted: #B8A9D9;
+  --border: #2A1B4A;
+  --border-accent: #A060FF;
+  
+  /* Enhanced magical effects in dark mode */
+  --crystal-glow: rgba(160, 96, 255, 0.4);
+  --crystal-shimmer: rgba(212, 191, 255, 0.3);
+  
+  /* Toast Colors for Dark */
+  --toast-bg: #1A0F2E;
+  --toast-color: #FFFFFF;
+  --toast-border: #2A1B4A;
+}
+
+/* Import magical fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+html {
+  background: var(--bg-primary);
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
+}
+
+/* Headings use Poppins for a more magical feel */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-thumb {
+  background: #475569;
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-thumb:hover {
+  background: #64748B;
+}
+
+/* Custom Focus Styles */
+.focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* ========== MAGICAL CRYSTAL ANIMATIONS ========== */
+
+/* Crystal sparkle effect */
+@keyframes crystal-sparkle {
+  0% { 
+    transform: scale(0) rotate(0deg);
+    opacity: 1;
+    filter: brightness(1);
+  }
+  50% {
+    transform: scale(1.2) rotate(180deg);
+    opacity: 0.8;
+    filter: brightness(1.5);
+  }
+  100% { 
+    transform: scale(0) rotate(360deg);
+    opacity: 0;
+    filter: brightness(2);
+  }
+}
+
+.crystal-sparkle {
+  animation: crystal-sparkle 1.5s ease-out forwards;
+}
+
+/* Magical glow pulse */
+@keyframes magical-pulse {
+  0%, 100% { 
+    box-shadow: 
+      0 0 10px var(--crystal-glow),
+      0 0 20px var(--crystal-glow),
+      0 0 30px var(--crystal-glow);
+  }
+  50% { 
+    box-shadow: 
+      0 0 20px var(--crystal-glow),
+      0 0 40px var(--crystal-glow),
+      0 0 60px var(--crystal-glow);
+  }
+}
+
+.magical-pulse {
+  animation: magical-pulse 2s infinite;
+}
+
+/* Crystal shimmer effect */
+@keyframes crystal-shimmer {
+  0% { 
+    background-position: -100% 0;
+  }
+  100% { 
+    background-position: 100% 0;
+  }
+}
+
+.crystal-shimmer {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--crystal-shimmer),
+    transparent
+  );
+  background-size: 200% 100%;
+  animation: crystal-shimmer 2s infinite;
+}
+
+/* Damage shake effect */
+@keyframes damage-shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-2px); }
+  20%, 40%, 60%, 80% { transform: translateX(2px); }
+}
+
+.damage-shake {
+  animation: damage-shake 0.5s ease-in-out;
+}
+
+/* Level up burst */
+@keyframes level-up-burst {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+    filter: brightness(2) hue-rotate(0deg);
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 0.8;
+    filter: brightness(3) hue-rotate(180deg);
+  }
+  100% {
+    transform: scale(3);
+    opacity: 0;
+    filter: brightness(4) hue-rotate(360deg);
+  }
+}
+
+.level-up-burst {
+  animation: level-up-burst 2s ease-out forwards;
+}
+
+/* Coin/gem collection animation */
+@keyframes collect-currency {
+  0% {
+    transform: translateY(0) scale(1) rotate(0deg);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-20px) scale(1.2) rotate(180deg);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(-100px) scale(0.5) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+.collect-currency {
+  animation: collect-currency 1s ease-out forwards;
+}
+
+/* Crystal progress bar fill animation */
+@keyframes crystal-fill {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.crystal-progress {
+  background: linear-gradient(
+    45deg,
+    var(--accent),
+    var(--accent-hover),
+    var(--accent),
+    var(--accent-hover)
+  );
+  background-size: 400% 400%;
+  animation: crystal-fill 3s ease infinite;
+}
+
+/* Legacy animations (maintaining compatibility) */
+@keyframes confetti {
+  0% { transform: scale(0) rotate(0deg); opacity: 1; }
+  100% { transform: scale(1) rotate(360deg); opacity: 0; }
+}
+
+.confetti {
+  animation: confetti 1s ease-out forwards;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 0 0 var(--crystal-glow); }
+  50% { box-shadow: 0 0 0 10px transparent; }
+}
+
+.pulse-glow {
+  animation: pulse-glow 2s infinite;
+}
+
+/* ========== UTILITY CLASSES ========== */
+
+/* Crystal-themed buttons */
+.btn-crystal {
+  background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+  border: 1px solid var(--border-accent);
+  color: var(--accent-text);
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-crystal:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 20px var(--crystal-glow);
+}
+
+.btn-crystal:active {
+  transform: translateY(0);
+}
+
+/* Crystal cards */
+.card-crystal {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(160, 96, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.card-crystal:hover {
+  border-color: var(--border-accent);
+  box-shadow: 0 8px 30px rgba(160, 96, 255, 0.2);
+}
+
+/* Status bars */
+.status-bar {
+  background: var(--bg-tertiary);
+  border-radius: 6px;
+  height: 20px;
+  overflow: hidden;
+  position: relative;
+}
+
+.status-bar-fill {
+  height: 100%;
+  transition: width 0.5s ease;
+  border-radius: 6px;
+}
+
+.hp-bar .status-bar-fill {
+  background: linear-gradient(90deg, var(--hp-color), #ff6b6b);
+}
+
+.mana-bar .status-bar-fill {
+  background: linear-gradient(90deg, var(--mana-color), #60a5fa);
+}
+
+.xp-bar .status-bar-fill {
+  background: linear-gradient(90deg, var(--xp-color), #fcd34d);
+}
+
+/* Rarity colors */
+.rarity-common { color: var(--common-color); }
+.rarity-rare { color: var(--rare-color); }
+.rarity-epic { color: var(--epic-color); }
+.rarity-legendary { color: var(--legendary-color); }
+
+/* Class colors */
+.class-warrior { color: var(--warrior-color); }
+.class-mage { color: var(--mage-color); }
+.class-healer { color: var(--healer-color); }
+.class-rogue { color: var(--rogue-color); }
+
+/* Difficulty indicators */
+.difficulty-trivial { 
+  background: rgba(156, 163, 175, 0.2);
+  color: var(--common-color);
+}
+.difficulty-easy { 
+  background: rgba(34, 197, 94, 0.2);
+  color: var(--success-color);
+}
+.difficulty-medium { 
+  background: rgba(251, 191, 36, 0.2);
+  color: var(--warning-color);
+}
+.difficulty-hard { 
+  background: rgba(239, 68, 68, 0.2);
+  color: var(--error-color);
+}
+
+/* Custom scrollbar styling for crystal theme */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--border-accent);
+}
+
+/* Smooth Transitions */
+* {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+/* Button Styles */
+.btn-accent {
+  background-color: var(--accent);
+  color: var(--accent-text);
+}
+
+.btn-accent:hover {
+  filter: brightness(1.1);
+}
+
+.btn-accent:active {
+  filter: brightness(0.95);
+}
+
+/* Progress Bar Glow Effect */
+.progress-glow {
+  filter: drop-shadow(0 0 4px currentColor);
+}
+
+/* Card Hover Effects */
+.card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="dark"] .card-hover:hover {
+  box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
+}
+
+/* Mobile Optimizations */
+@media (max-width: 768px) {
+  /* Ensure touch targets are at least 44px */
+  button, .btn, [role="button"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Adjust spacing for mobile */
+  .mobile-spacing {
+    padding: 1rem;
+  }
+  
+  /* Hide scrollbars on mobile for cleaner look */
+  .mobile-hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .mobile-hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  :root {
+    --border: #000000;
+  }
+  
+  [data-theme="dark"] {
+    --border: #FFFFFF;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  body {
+    background: white !important;
+    color: black !important;
+  }
+}
